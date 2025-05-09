@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMIS Quality Assessment Tool</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1>Web-based Project Management Information System (PMIS) Quality Assessment Tool</h1>
+            <p class="lead mt-3">The Web-Based PMIS Quality Assessment Tool is a decision-support system designed to help project managers evaluate and compare project management information systems based on intangible software quality metrics. Developed from a tailored quality model, the tool incorporates key factors such as reliability, usability, functionality, efficiency, interoperability, accuracy, and portability, each broken down into measurable attributes. By collecting expert input on the priority and influence of these attributes, the tool calculates weighted scores to objectively assess different PMIS platforms. This enables users to make informed, data-driven decisions aligned with their project needs and organizational goals.</p>
+            <p class="mt-4"><strong>Please rate each attribute based on your experience using the 5-point Likert Scale (1 = Very Poor, 5 = Excellent).</strong></p>
+        </div>
+
+        <form id="assessmentForm" class="mt-5">
+            <!-- Attribute ratings will be generated here by script.js -->
+            <div id="attributesContainer">
+            </div>
+
+            <div class="form-row mt-5 mb-5">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary btn-lg mr-3">Submit</button>
+                    <button type="reset" class="btn btn-secondary btn-lg">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal for Score -->
+    <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="scoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scoreModalLabel">Result</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Assessment Score:</p>
+                    <p id="scoreQualityText" class="text-center mt-2 font-weight-bold"></p>
+                    <div class="progress-container mb-3" style="position: relative; height: 30px;">
+                         <div class="progress" style="height: 30px;">
+                            <div id="scoreProgressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="1" aria-valuemax="5"></div>
+                        </div>
+                        <div id="scoreArrow" style="position: absolute; top: -10px; left: 0%; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid black; transform: translateX(-50%);"></div>
+                    </div>
+                    <div class="d-flex justify-content-between small text-muted">
+                        <span>1 (Very Poor)</span>
+                        <span>2 (Poor)</span>
+                        <span>3 (Fair)</span>
+                        <span>4 (High)</span>
+                        <span>5 (Excellent)</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html> 

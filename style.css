@@ -1,0 +1,78 @@
+body {
+    font-family: sans-serif;
+}
+
+.attribute-category {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: .25rem;
+    background-color: #f9f9f9;
+}
+
+.attribute-category h3 {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: .5rem;
+    color: #007bff;
+}
+
+.form-group label:not(.radio-top-label) {
+    font-weight: 500;
+}
+
+.modal-body .progress {
+    height: 30px; 
+    margin-bottom: 1rem;
+    font-size: 1rem; 
+}
+
+#scoreProgressBar {
+    font-weight: bold;
+}
+
+.progress-container .small span {
+    flex-basis: 20%;
+    text-align: center;
+}
+
+/* Styles for the radio button layout */
+.radio-options-container {
+   
+}
+
+.radio-option-vertical-item {
+    display: flex;             /* Use flexbox for the item itself */
+    flex-direction: column;    /* Stack label and radio vertically */
+    align-items: center;       /* Center label and radio horizontally within this item */
+    /* padding: 0 2px; */     /* Minimal padding if needed, or let justify-content handle spacing */
+    min-width: 50px;           /* Ensure items have some minimum width for better spacing/appearance */
+}
+
+.radio-top-label {
+    font-size: 0.80rem; /* Made slightly smaller for a tighter look, adjust as needed */
+    font-weight: normal;
+    color: #495057;
+    white-space: nowrap; /* Prevent labels like "Very Poor" from breaking line if space is tight */
+    /* d-block and mb-1 are handled in JS for spacing */
+}
+
+.radio-button-actual {
+    /* d-block and mx-auto are handled in JS for centering */
+    margin-top: 1.2rem !important; /* Space between label and radio */
+}
+
+/* Ensure the question text has appropriate bottom margin */
+.col-sm-7 > .form-text {
+    margin-bottom: 0.75rem !important; /* Space below question, before radios */
+}
+
+/* Ensure the question text is aligned left (if it was changed by previous styles) */
+/* This might not be strictly necessary if other styles didn't force center alignment */
+.form-group .text-muted {
+    text-align: left !important; 
+} 
+
+#scoreQualityText {
+    font-size: 1.5rem;
+} 
