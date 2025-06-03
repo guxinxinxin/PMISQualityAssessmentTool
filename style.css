@@ -75,4 +75,29 @@ body {
 
 #scoreQualityText {
     font-size: 1.5rem;
+}
+
+/* Heptagon (Radar) Chart styles */
+#heptagonChart {
+    max-width: 350px;
+    max-height: 350px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+#conclusionSection {
+    font-size: 1.15rem;
+    background: #f8f9fa;
+    border: 2px solid #007bff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+#conclusionSection h5 {
+    color: #007bff;
+    font-weight: bold;
+}
+#conclusionText {
+    font-size: 1.1rem;
+    color: #333;
 } 

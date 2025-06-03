@@ -14,7 +14,7 @@
         <div class="text-center">
             <h1>Web-based Project Management Information System (PMIS) Quality Assessment Tool</h1>
             <p class="lead mt-3">The Web-Based PMIS Quality Assessment Tool is a decision-support system designed to help project managers evaluate and compare project management information systems based on intangible software quality metrics. Developed from a tailored quality model, the tool incorporates key factors such as reliability, usability, functionality, efficiency, interoperability, accuracy, and portability, each broken down into measurable attributes. By collecting expert input on the priority and influence of these attributes, the tool calculates weighted scores to objectively assess different PMIS platforms. This enables users to make informed, data-driven decisions aligned with their project needs and organizational goals.</p>
-            <p class="mt-4"><strong>Please rate each attribute based on your experience using the 5-point Likert Scale (1 = Very Poor, 5 = Excellent).</strong></p>
+            <p class="mt-4"><strong>Please rate each attribute based on your experience using the 5-point Likert Scale.</strong></p>
         </div>
 
         <form id="assessmentForm" class="mt-5">
@@ -42,7 +42,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Assessment Score:</p>
                     <p id="scoreQualityText" class="text-center mt-2 font-weight-bold"></p>
                     <div class="progress-container mb-3" style="position: relative; height: 30px;">
                          <div class="progress" style="height: 30px;">
@@ -56,6 +55,15 @@
                         <span>3 (Fair)</span>
                         <span>4 (High)</span>
                         <span>5 (Excellent)</span>
+                    </div>
+                    <!-- Heptagon Chart for Metrics -->
+                    <div class="my-4 d-flex justify-content-center">
+                        <canvas id="heptagonChart" width="350" height="350"></canvas>
+                    </div>
+                    <!-- Conclusion Section -->
+                    <div id="conclusionSection" class="mt-3 p-3 border rounded bg-light">
+                        <h5>Conclusion</h5>
+                        <p id="conclusionText" class="mb-0"></p>
                     </div>
                 </div>
                 <div class="modal-footer">
