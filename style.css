@@ -100,4 +100,78 @@ body {
 #conclusionText {
     font-size: 1.1rem;
     color: #333;
-} 
+}
+
+/* Colored dots for metric groups */
+.metric-dot {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.metric-dot.green { background: #28a745; }
+.metric-dot.yellow { background: #ffc107; }
+.metric-dot.blue { background: #007bff; }
+.metric-dot.red { background: #dc3545; }
+.metric-dot.purple { background: #6f42c1; }
+.metric-dot.teal { background: #20c997; }
+.metric-dot.gray { background: #6c757d; }
+
+/* Bar visualization for scores */
+.score-bar {
+    display: inline-block;
+    vertical-align: middle;
+    height: 18px;
+    margin-right: 6px;
+}
+.score-segment {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 2px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    border: 1px solid #cfcfcf;
+}
+.score-segment.filled {
+    /* background: #28a745;  Remove static green */
+    /* border-color: #28a745; */
+}
+.score-segment.filled.bg-danger { background: #dc3545; border-color: #dc3545; }
+.score-segment.filled.bg-warning { background: #ffc107; border-color: #ffc107; }
+.score-segment.filled.bg-info { background: #17a2b8; border-color: #17a2b8; }
+.score-segment.filled.bg-primary { background: #007bff; border-color: #007bff; }
+.score-segment.filled.bg-success { background: #28a745; border-color: #28a745; }
+
+/* Table styles */
+#scoreTableContainer table {
+    width: 100%;
+    background: #fcfcfc;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+#scoreTableContainer th, #scoreTableContainer td {
+    padding: 10px 12px;
+    vertical-align: middle;
+}
+#scoreTableContainer th {
+    background: #f5f5f5;
+    font-weight: bold;
+    font-size: 1.08rem;
+}
+#scoreTableContainer tr.metric-average td {
+    font-weight: bold;
+    background: #f0f8ff;
+}
+#scoreTableContainer tr.metric-group td {
+    border-top: 2px solid #e0e0e0;
+}
+
+.metric-dot.bg-danger { background: #dc3545; }
+.metric-dot.bg-warning { background: #ffc107; }
+.metric-dot.bg-info { background: #17a2b8; }
+.metric-dot.bg-primary { background: #007bff; }
+.metric-dot.bg-success { background: #28a745; } 

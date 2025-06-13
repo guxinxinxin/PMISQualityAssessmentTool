@@ -126,6 +126,7 @@ $(document).ready(function () {
         const metricLabels = [];
         const metricAverages = [];
         let allRated = true;
+        const subMetricScores = [];
 
         attributesData.forEach(group => {
             let groupSum = 0;
@@ -136,6 +137,11 @@ $(document).ready(function () {
                     groupSum += parseInt(value);
                     totalWeightedScore += parseInt(value) * attr.weight;
                     groupCount++;
+                    subMetricScores.push({
+                        category: group.category,
+                        attribute: attr.name,
+                        value: parseInt(value)
+                    });
                 } else {
                     allRated = false;
                 }
@@ -153,109 +159,21 @@ $(document).ready(function () {
         }
 
         totalWeightedScore *= 0.01;
-        const percentageScore = ((totalWeightedScore) / 5) * 100;
-
-        $('#currentScoreValue').text(totalWeightedScore.toFixed(2));
-        $('#scoreProgressBar').css('width', percentageScore + '%').attr('aria-valuenow', totalWeightedScore).text(totalWeightedScore.toFixed(2));
-        const arrowPosition = percentageScore;
-        $('#scoreArrow').css('left', arrowPosition + '%');
-
         let qualityText = "";
-        let barClass = "";
-        if (totalWeightedScore < 1.5) { qualityText = "Very Poor Quality"; barClass = "bg-danger"; }
-        else if (totalWeightedScore < 2.5) { qualityText = "Poor Quality"; barClass = "bg-warning"; }
-        else if (totalWeightedScore < 3.5) { qualityText = "Fair Quality"; barClass = "bg-info"; }
-        else if (totalWeightedScore < 4.5) { qualityText = "High Quality"; barClass = "bg-primary"; }
-        else { qualityText = "Excellent Quality"; barClass = "bg-success"; }
-        $('#scoreQualityText').text(qualityText);
-        $('#scoreProgressBar').removeClass('bg-danger bg-warning bg-info bg-primary bg-success').addClass(barClass);
+        if (totalWeightedScore < 1.5) { qualityText = "Very Poor Quality"; }
+        else if (totalWeightedScore < 2.5) { qualityText = "Poor Quality"; }
+        else if (totalWeightedScore < 3.5) { qualityText = "Fair Quality"; }
+        else if (totalWeightedScore < 4.5) { qualityText = "High Quality"; }
+        else { qualityText = "Excellent Quality"; }
 
-        // Draw Heptagon Radar Chart
-        function drawHeptagonChart() {
-            const ctx = document.getElementById('heptagonChart').getContext('2d');
-            if (heptagonChartInstance) {
-                heptagonChartInstance.destroy();
-            }
-            heptagonChartInstance = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: metricLabels,
-                    datasets: [{
-                        label: 'Metric Score',
-                        data: metricScores,
-                        backgroundColor: 'rgba(0, 123, 255, 0.2)',
-                        borderColor: 'rgba(0, 123, 255, 1)',
-                        pointBackgroundColor: 'rgba(0, 123, 255, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(0, 123, 255, 1)'
-                    }]
-                },
-                options: {
-                    scale: {
-                        angleLines: { display: true },
-                        min: 1,
-                        max: 5,
-                        ticks: {
-                            beginAtZero: false,
-                            min: 1,
-                            max: 5,
-                            stepSize: 1
-                        }
-                    },
-                    legend: { display: false },
-                    responsive: false,
-                    plugins: {
-                        legend: { display: false }
-                    }
-                }
-            });
-        }
-        if (window.Chart && document.getElementById('heptagonChart')) {
-            drawHeptagonChart();
-        } else {
-            // Wait for Chart.js to load if not ready
-            script.onload = drawHeptagonChart;
-        }
-
-        // Generate Conclusion
-        let conclusionText = `This assessment indicates the system's overall quality is <b>${qualityText}</b>, with total score of <b>${totalWeightedScore.toFixed(2)}</b> out of 5.<br><br>`;
-        let highMetricsList = [];
-        let lowMetricsList = [];
-        let averageMetricsList = [];
-        metricAverages.forEach(m => {
-            if (m.avg >= 4) {
-                highMetricsList.push(m.category);
-            } else if (m.avg < 3) {
-                lowMetricsList.push(m.category);
-            } else {
-                averageMetricsList.push(m.category);
-            }
-        });
-        if (highMetricsList.length > 0) {
-            if (highMetricsList.length === metricAverages.length) {
-                conclusionText += `<p>The system performs well. Keep maintaining the high standard in all areas.</p>`;
-            } else {
-                conclusionText += `<p>Excellent performance area, keep maintaining this high standard in this area: <b>${highMetricsList.join(', ')}</b>.</p>`;
-            }
-        }
-        if (lowMetricsList.length > 0) {
-            if (lowMetricsList.length === metricAverages.length) {
-                conclusionText += `<p>The system performs poorly. Consider prioritizing improvements in all areas to enhance overall system quality.</p>`;
-            } else {
-                conclusionText += `<p>Low performance area, consider prioritizing improvements in this area to enhance overall system quality: <b>${lowMetricsList.join(', ')}</b>.</p>`;
-            }
-        }
-        if (averageMetricsList.length > 0) {
-            if (averageMetricsList.length === metricAverages.length) {
-                conclusionText += `<p>The system performs average. There is room for further improvement in all areas.</p>`;
-            } else {
-                conclusionText += `<p>Satisfactory performance area, there is room for further improvement: <b>${averageMetricsList.join(', ')}</b>.</p>`;
-            }
-        }
-        $('#conclusionText').html(conclusionText);
-
-        $('#scoreModal').modal('show');
+        // Store results in localStorage
+        localStorage.setItem('pmis_result', JSON.stringify({
+            totalWeightedScore,
+            qualityText,
+            metricAverages,
+            subMetricScores
+        }));
+        window.location.href = 'result.html';
     });
 
     $('#assessmentForm').on('reset', function () {
